@@ -520,8 +520,16 @@ namespace Microsoft.CodeAnalysis.CSharp
                     .Any(static node => node is BoundWhenDecisionDagNode { WhenExpression: { ConstantValueOpt: null } });
 
                 var inputDagTemp = BoundDagTemp.ForOriginalInput(loweredInput);
+                // If we're switching on a local variable or a parameter and there is no when clause,
+                // we can often reuse the original storage instead of creating a fresh temp. This
+                // avoids unnecessary copies. In particular, for a `ref` parameter to a nullable
+                // value type we want to avoid copying the value (which causes an ldobj/stloc) so
+                // that we can call instance members (for example Nullable<T>.get_HasValue) on the
+                // original managed pointer. Only do this when there is no when-clause that could
+                // mutate the variable during the decision automaton.
                 if ((loweredInput.Kind == BoundKind.Local || loweredInput.Kind == BoundKind.Parameter)
-                    && loweredInput.GetRefKind() == RefKind.None &&
+                    && (loweredInput.GetRefKind() == RefKind.None ||
+                        (loweredInput.GetRefKind() == RefKind.Ref && loweredInput.Type.IsNullableType())) &&
                     !anyWhenClause)
                 {
                     // If we're switching on a local variable and there is no when clause,
