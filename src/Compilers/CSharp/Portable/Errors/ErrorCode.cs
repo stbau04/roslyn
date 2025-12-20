@@ -2447,6 +2447,7 @@ namespace Microsoft.CodeAnalysis.CSharp
         ERR_EncUpdateRequiresEmittingExplicitInterfaceImplementationNotSupportedByTheRuntime = 9346,
         ERR_ExtensionParameterInStaticContext = 9347,
         ERR_CompilationUnitUnexpected = 9348,
+        WRN_UninitializedNonNullableEvent = 9349,
 
         // Note: you will need to do the following after adding errors:
         //  1) Update ErrorFacts.IsBuildOnlyDiagnostic (src/Compilers/CSharp/Portable/Errors/ErrorFacts.cs)

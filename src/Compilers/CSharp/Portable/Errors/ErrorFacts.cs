@@ -84,6 +84,7 @@ namespace Microsoft.CodeAnalysis.CSharp
             nullableWarnings.Add(GetId(ErrorCode.WRN_NullabilityMismatchInParameterTypeOnInterceptor));
 
             nullableWarnings.Add(GetId(ErrorCode.WRN_UninitializedNonNullableBackingField));
+            nullableWarnings.Add(GetId(ErrorCode.WRN_UninitializedNonNullableEvent));
 
             NullableWarnings = nullableWarnings.ToImmutable();
         }
@@ -571,6 +572,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                 case ErrorCode.WRN_AccessorDoesNotUseBackingField:
                 case ErrorCode.WRN_UnscopedRefAttributeOldRules:
                 case ErrorCode.WRN_RedundantPattern:
+                case ErrorCode.WRN_UninitializedNonNullableEvent:
                     return 1;
                 default:
                     return 0;
@@ -2555,6 +2557,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                 or ErrorCode.ERR_InequalityOperatorInPatternNotSupported
                 or ErrorCode.ERR_DesignatorBeforePropertyPattern
                 or ErrorCode.ERR_CompilationUnitUnexpected
+                or ErrorCode.WRN_UninitializedNonNullableEvent
                     => false,
             };
 #pragma warning restore CS8524 // The switch expression does not handle some values of its input type (it is not exhaustive) involving an unnamed enum value.

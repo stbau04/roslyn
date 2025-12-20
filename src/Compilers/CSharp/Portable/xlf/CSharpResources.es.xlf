@@ -5739,6 +5739,16 @@
         <target state="translated">La propiedad no anulable debe contener un valor no nulo al salir del constructor. Considere agregar el modificador "requerido", o declarar la propiedad como anulable, o agregar atributos "[campo: MaybeNull, AllowNull]".</target>
         <note />
       </trans-unit>
+      <trans-unit id="WRN_UninitializedNonNullableEvent">
+        <source>Non-nullable {0} '{1}' must contain a non-null value when exiting constructor. Consider declaring the {0} as nullable.</source>
+        <target state="new">Non-nullable {0} '{1}' must contain a non-null value when exiting constructor. Consider declaring the {0} as nullable.</target>
+        <note>Similar diagnostic message as 'WRN_UninitializedNonNullableField'</note>
+      </trans-unit>
+      <trans-unit id="WRN_UninitializedNonNullableEvent_Title">
+        <source>Non-nullable event must contain a non-null value when exiting constructor. Consider declaring the event as nullable.</source>
+        <target state="new">Non-nullable event must contain a non-null value when exiting constructor. Consider declaring the event as nullable.</target>
+        <note />
+      </trans-unit>
       <trans-unit id="WRN_UninitializedNonNullableField">
         <source>Non-nullable {0} '{1}' must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring the {0} as nullable.</source>
         <target state="translated">El elemento {0} "{1}" que no acepta valores NULL debe contener un valor distinto de NULL al salir del constructor. Considere la posibilidad de agregar el modificador "required'"o declarar el {0} como un valor que acepta valores NULL.</target>
